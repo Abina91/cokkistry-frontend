@@ -39,7 +39,9 @@ const SearchPage = ({ setCategory }) => {
             results.map((recipe) => (
               <div className="recipe-card" key={recipe._id}>
                 <Link to={`/recipes/${recipe.slug}`}>
-                  <img src={`${process.env.REACT_APP_API_URL}${recipe.imageURL}`} alt={recipe.name} />
+                  <img src={recipe.imageURL.startsWith('http') ? recipe.imageURL : `${process.env.REACT_APP_API_URL}${recipe.imageURL}`} 
+                  alt={recipe.name} />
+
                   <p>{recipe.name}</p>
                 </Link>
               </div>
