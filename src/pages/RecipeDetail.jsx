@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../styles/recipeDetail.css";
-import axios from "axios";
 
 const convertToEmbedURL = (url) => {
   if (!url) return null;
@@ -26,13 +25,18 @@ const RecipeDetail = () => {
 
     console.log(`Fetching recipe for slug: ${slug}`);
 
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/recipes/${slug}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/recipes/${slug}`)
       .then((res) => {
-        console.log("Fetched recipe data:", res.data);
-        setRecipe(res.data);
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Fetched recipe data:", data);
+        setRecipe(data);
         setLoading(false);
-        fetchNutrition(res.data.ingredients);
+        fetchNutrition(data.ingredients);
       })
       .catch((err) => {
         console.error("Error fetching recipe:", err);

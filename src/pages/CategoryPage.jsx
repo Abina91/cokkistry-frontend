@@ -2,23 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../styles/home.css";
-import axios from "axios";
 
 const CategoryPage = () => {
   const { categoryName } = useParams(); // get category from URL
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/recipes`);
-        setRecipes(res.data);
-      } catch (err) {
-        console.error("Error fetching recipes:", err);
-      }
-    };
-
-    fetchRecipes();
+    fetch(`${process.env.REACT_APP_API_URL}/recipes`)
+      .then((res) => res.json())
+      .then((data) => setRecipes(data))
+      .catch((err) => console.error("Error fetching recipes:", err));
   }, []);
 
   const filteredRecipes = recipes.filter(

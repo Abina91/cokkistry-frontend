@@ -19,7 +19,7 @@ const SearchPage = ({ setCategory }) => {
     const fetchResults = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/recipes/search?q=${encodeURIComponent(searchTerm)}`
+          `${process.env.REACT_APP_API_URL}/api/recipes/search?q=${encodeURIComponent(searchTerm)}`
         );
         setResults(res.data);
       } catch (err) {

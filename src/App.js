@@ -15,7 +15,7 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/api/recipes/:slug' element={<RecipeDetail />} />
+      <Route path='/recipes/:slug' element={<RecipeDetail />} />
       <Route path="/category/:categoryName" element={<CategoryPage />} />
       <Route path="/search" element={<SearchPage setCategory={setCategory} />} />
       <Route path="/login" element={<Login />} />

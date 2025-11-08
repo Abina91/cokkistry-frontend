@@ -2,23 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import "../styles/home.css";
-import axios from "axios";
 
 const Home = ({ searchTerm, setSearchTerm }) => {
   const [recipes, setRecipes] = useState([]);
   const [visibleCount, setVisibleCount] = useState(12); // Show 12 recipes initially
 
   useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/recipes`);
-        setRecipes(res.data);
-      } catch (err) {
-        console.error("Error fetching recipes:", err);
-      }
-    };
-
-    fetchRecipes();
+    fetch(`${process.env.REACT_APP_API_URL}/recipes`)
+      .then((res) => res.json())
+      .then((data) => setRecipes(data))
+      .catch((err) => console.error("Error fetching recipes:", err));
   }, []);
 
   const filteredRecipes = recipes.filter((recipe) => {
@@ -42,21 +35,22 @@ const Home = ({ searchTerm, setSearchTerm }) => {
   return (
     <Layout searchTerm={searchTerm} setSearchTerm={setSearchTerm}>
       <div className="home-page">
-        <div className="intro-section">
-          <h1>Simplify Indian cooking with Cookistry!</h1>
-          <p>
-            Say goodbye to overly complex recipes and lengthy ingredient lists. Discover authentic Indian dishes made easy with detailed, step-by-step instructions.
-          </p>
-          <p>
-            Taste the richness of Indian cuisine without the overwhelm. Cookistry makes every dish approachable, delicious, and fun to cook.
-          </p>
-          <p>
-            Whether you’re a beginner or a busy foodie, Cookistry helps you whip up flavorful Indian dishes in no time—with fewer ingredients and simple steps.
-          </p>
-          <p>
-            From spicy curries to sweet delights, Cookistry brings the soul of Indian kitchens to your fingertips—made simple and satisfying.
-          </p>
-        </div>
+      <div class="intro-section">
+  <h1>Simplify Indian cooking with Cookistry!</h1>
+  <p>
+    Say goodbye to overly complex recipes and lengthy ingredient lists. Discover authentic Indian dishes made easy with detailed, step-by-step instructions.
+  </p>
+  <p>
+    Taste the richness of Indian cuisine without the overwhelm. Cookistry makes every dish approachable, delicious, and fun to cook.
+  </p>
+  <p>
+    Whether you’re a beginner or a busy foodie, Cookistry helps you whip up flavorful Indian dishes in no time—with fewer ingredients and simple steps.
+  </p>
+  <p>
+    From spicy curries to sweet delights, Cookistry brings the soul of Indian kitchens to your fingertips—made simple and satisfying.
+  </p>
+</div>
+
 
         <div className="latest-recipes">
           <h2>Latest Recipes</h2>
