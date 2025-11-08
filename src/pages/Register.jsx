@@ -15,7 +15,7 @@ const Register = () => {
 
     if (name && email && password) {
       try {
-        await axios.post('${process.env.REACT_APP_API_URL}/api/register', {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/register`, {
           name,
           email,
           password,

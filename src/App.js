@@ -21,7 +21,7 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/register" element={<Register />} />
-      
+      console.log(category);
       <Route path="/bmi" element={<BMI />} />
     </Routes>
   );
