@@ -11,7 +11,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
 const App = () => {
-  const [category, setCategory] = useState("");
+  const [, setCategory] = useState("");
   return (
     <Routes>
       <Route path='/' element={<Home />} />
@@ -21,7 +21,6 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/register" element={<Register />} />
-      console.log(category);
       <Route path="/bmi" element={<BMI />} />
     </Routes>
   );
