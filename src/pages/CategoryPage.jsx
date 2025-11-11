@@ -28,7 +28,7 @@ const CategoryPage = () => {
               <div className="recipe-card" key={recipe._id}>
                 <Link to={`/recipes/${recipe.slug}`}>
                   <img
-                    src={`${process.env.REACT_APP_API_URL}${recipe.imageURL}`}
+                    src={recipe.imageURL}
                     alt={recipe.name}
                   />
                   <p>{recipe.name}</p>
